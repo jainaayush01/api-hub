@@ -6,6 +6,7 @@ import './App.css';
 
 import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
 
 const App = (() => {
   return (
@@ -14,6 +15,7 @@ const App = (() => {
         <Routes>
           <Route exact path='/' element={<Dashboard />} />
           <Route exact path='/login' element={<Login />} />
+          <Route exact path='/register' element={<Register />} />
         </Routes>
       </Router>
       {/* <Dashboard /> */}

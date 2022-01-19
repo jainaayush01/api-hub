@@ -62,7 +62,7 @@
   color: #566474;
 }
 
-.loginBox {
+.registerBox {
   width: 50%;
   padding-top: 138px;
 
@@ -71,9 +71,9 @@
   align-items: center;
 }
 
-.loginForm {
+.registerForm {
   width: 498px;
-  height: 404px;
+//   height: 404px;
 
   border: 1px solid #dfe0e0;
   box-sizing: border-box;
@@ -88,7 +88,7 @@
 
   font-family: DM Sans;
   font-style: normal;
-  font-weight: 500;  
+  font-weight: 500;
   font-size: 20px;
   line-height: 26px;
   letter-spacing: -0.02em;
@@ -113,7 +113,7 @@
   color: #9eaab7;
 }
 
-.loginBtn {
+.registerBtn {
   margin-top: 16.22%;
 
   display: flex;

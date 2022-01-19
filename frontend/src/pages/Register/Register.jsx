@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./Login.module.scss";
+import styles from "./Register.module.scss";
 
 import Logo from "../../components/Logo/Logo";
 import profileImage from "../../assets/profileImage.png";
 
-const Login = () => {
+const Register = () => {
   return (
-    <div className={styles.login}>
+    <div className={styles.register}>
       <div className={styles.navbar}>
         <Logo />
       </div>
@@ -21,15 +21,20 @@ const Login = () => {
                 Welcome to your Dashboard
               </div>
               <div className={styles.secondaryText}>
-                Your uploaded APIs will be displayed here once you login to your
+                Your uploaded APIs will be displayed here once you register your
                 account
               </div>
             </div>
           </div>
         </div>
-        <div className={styles.loginBox}>
-          <div className={styles.loginForm}>
-            <div className={styles.formH1}>Login to your account</div>
+        <div className={styles.registerBox}>
+          <div className={styles.registerForm}>
+						<div className={styles.formH1}>Register your account</div>
+						<input
+              className={styles.inputField}
+              type="text"
+              placeholder="Name"
+            />
             <input
               className={styles.inputField}
               type="email"
@@ -41,7 +46,7 @@ const Login = () => {
               placeholder="Password"
             />
 
-            <div className={styles.loginBtn}>Login now</div>
+            <div className={styles.registerBtn}>Register now</div>
           </div>
         </div>
       </div>
@@ -49,4 +54,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
