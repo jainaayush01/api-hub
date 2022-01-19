@@ -1,15 +1,12 @@
 import React from "react";
 import styles from "./Navbar.module.scss";
 
-import Logo from "../../assets/main-logo.svg";
+import Logo from "../Logo/Logo";
 
 const Header = () => {
   return (
     <header className={styles.navbar}>
-      {/* <div className="Logo"> */}
-      <img src={Logo} className={styles.logo} />
-      {/* <Logo height="29.24px" width="120px" /> */}
-      {/* </div> */}
+      <Logo />
       <div className={styles.rightNav}>
         {/* <div className={styles.rig}>
         <ul className={styles.list}>
