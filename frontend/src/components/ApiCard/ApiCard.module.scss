@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+
+.apiCard {
+  // background: #E5E5E5;
+  display: flex;
+  flex-direction: column;
+  // margin-top: 10%;
+  // margin-bottom: 5%;
+  height: auto;
+}
+
+.apiImage {
+  width: 274px;
+  height: 156px;
+}
+
+.primaryText {
+  width: 224px;
+  height: 31px;
+
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 31px;
+  letter-spacing: -0.02em;
+
+  display: flex;
+  padding-top: 10%;
+  margin-left: 1%;
+  padding-bottom: 4%;
+  color: #1e272e;
+}
+
+.secondaryText {
+  display: flex;
+  width: 291px;
+  height: 42px;
+
+  color: #566474;
+
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+}

@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+
+.banner {
+  width: 100%;
+
+  background: #c3e7fd;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.semiCircle {
+  width: 107px;
+  height: 186px;
+
+  background: #d3b4f6;
+  border-radius: 1000px 0px 0px 1000px;
+
+  transform: rotate(-180deg);
+}
+
+.textBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 4%;
+}
+
+.primaryText {
+  width: 395px;
+  height: 58px;
+
+  font-family: Bebas Neue;
+  font-style: normal;
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 58px;
+  letter-spacing: -0.02em;
+
+  color: #000000;
+}
+
+.secondaryText {
+  width: 319px;
+  height: 36px;
+
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: -0.02em;
+
+  color: #566474;
+}
+
+.viewButton {
+  margin-left: 20%;
+  margin-top: 5%;
+
+  width: 133px;
+  height: 44px;
+
+  color: #ffffff;
+  background: #1e272e;
+  border-radius: 5px;
+
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 28px;
+}
