@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./Navbar.module.scss";
+import { useNavigate } from "react-router-dom";
 
 import Logo from "../Logo/Logo";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <header className={styles.navbar}>
       <Logo />
@@ -18,7 +20,7 @@ const Header = () => {
         </li>
         </ul>
       </div> */}
-        <div className={styles.loginBtn}>Login/Signup</div>
+        <div className={styles.loginBtn} onClick={() => navigate('/login')}>Login/Signup</div>
       </div>
     </header>
   );

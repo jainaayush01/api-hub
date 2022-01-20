@@ -29,6 +29,7 @@ router.post(
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
+        message: "Validation Error",
         errors: errors.array(),
       });
     }
@@ -73,7 +74,9 @@ router.post(
       });
     } catch (err) {
       console.log(err.message);
-      res.status(500).send("Internal Server Error!");
+      res.status(500).json({
+        message: "Internal Server Error",
+      });
     }
   },
 );
@@ -97,6 +100,7 @@ router.post(
 
     if (!errors.isEmpty()) {
       return res.status(400).json({
+        message: "Validation Error!",
         errors: errors.array(),
       });
     }
