@@ -137,3 +137,21 @@
     cursor: pointer;
   }
 }
+
+.registerLink {
+  margin-top: 4.08%;
+  text-align: center;
+  text-decoration: underline;
+
+  font-family: DM Sans;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+
+  &:hover {
+    cursor: pointer;
+    color: blue;
+    text-decoration: none;
+  }
+}

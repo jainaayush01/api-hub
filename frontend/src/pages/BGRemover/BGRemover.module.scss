@@ -14,27 +14,24 @@
 
 .infoBox {
   width: 50%;
-  height: 812px;
+  // height: 812px;
   padding-top: 138px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   background: rgba(247, 248, 250, 0.5);
 }
 
-.infoCard {
-  width: 480px;
-  height: 433px;
-}
-
-.profileImage {
-  margin-bottom: 6.46%;
+.bannerImage {
+  width: 508px;
+  height: 315px;
 }
 
 .primaryText {
-  width: 381px;
+  width: 400px;
   height: 124px;
   margin-bottom: 40px;
 
@@ -49,78 +46,110 @@
 }
 
 .secondaryText {
-  width: 480px;
-  height: 135px;
+  width: 319px;
+  height: 36px;
+  margin-bottom: 40px;
 
   font-family: DM Sans;
   font-style: normal;
   font-weight: 500;
   font-size: 28px;
-  line-height: 160%;
+  line-height: 36px;
   letter-spacing: -0.02em;
 
   color: #566474;
 }
 
-.registerBox {
+.uploadBox {
   width: 50%;
   padding-top: 138px;
+  padding-bottom: 138px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.registerForm {
+.uploadForm {
   width: 498px;
-//   height: 404px;
+  // height: 404px;
 
   border: 1px solid #dfe0e0;
   box-sizing: border-box;
   border-radius: 10px;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   padding: 50px 63px;
 }
 
-.formH1 {
-  width: 197px;
-  height: 26px;
-
-  font-family: DM Sans;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 26px;
-  letter-spacing: -0.02em;
-
-  color: #000000;
+.uploadImage {
+  width: 107px;
+  height: 107px;
+  margin-bottom: 8.11%;
 }
 
-.inputField {
-  margin-top: 8.11%;
-  padding: 11px 62px 12px 16px;
-  border: 1px solid #ebf0f5;
-  box-sizing: border-box;
-  border-radius: 5px;
+.uploadInfo {
+  width: 192px;
+  height: 42px;
 
   font-family: DM Sans;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 21px;
+  text-align: center;
   letter-spacing: -0.02em;
 
-  color: #9eaab7;
+  color: #566474;
 }
 
-.registerBtn {
-  margin-top: 16.22%;
+.uploadWrapper {
+  width: 100%;
+}
+
+.uploadBtn {
+  margin-top: 8.11%;
+  margin-bottom: 5.44%;
+  width: 100%;
+  height: 100px;
 
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 8px 16px;
+
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+
+  color: #566474;
+  background-color: #fafafa;
+  border-radius: 5px;
+  border: 1px solid #566474;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.submitBtn {
+  margin-top: 8.11%;
+  margin-bottom: 5.44%;
+  width: 100%;
+  // height: 100px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
 
   font-family: DM Sans;
   font-style: normal;
@@ -131,27 +160,27 @@
 
   color: #ffffff;
   background: #142683;
+  // color: #566474;
   border-radius: 5px;
+  // border: 1px solid #566474;
 
   &:hover {
     cursor: pointer;
   }
 }
 
-.loginLink {
-  margin-top: 4.08%;
-  text-align: center;
-  text-decoration: underline;
-
-  font-family: DM Sans;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 28px;
-  letter-spacing: -0.02em;
-
-  &:hover {
-    cursor: pointer;
-    color: blue;
-    text-decoration: none;
-  }
+.imageItem {
+  display: flex;
+  margin: 10px 0;
+}
+.imageItemBtnWrapper {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+button {
+  height: 40px;
+  margin-bottom: 5px;
 }

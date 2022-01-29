@@ -6,4 +6,7 @@
   // justify-self: left;
   width: 120px;
   height: 29px;
+  &:hover {
+    cursor: pointer;
+  }
 }

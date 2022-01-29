@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import styles from "./Login.module.scss";
 
 import Logo from "../../components/Logo/Logo";
@@ -23,22 +26,29 @@ const Login = () => {
           // @TODO: display Error Message
           console.log(res.status);
           // console.log(res.json());
-          console.log(res.message);
+          res = await res.json();
+          console.log(res);
+          toast.error(res.message);
           return;
         } else {
           // @TODO: redirect to dashboard With State
           console.log(res.status);
-          let data = await res.json();
+          res = await res.json();
+          toast.success("Login Successfull!!");
           navigate(`/`);
-          console.log(data);
-          console.log("Login Successfull!!")
+          console.log(res);
+          sessionStorage.setItem("Auth Token", res.token);
+          console.log("Login Successfull!!");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <div className={styles.login}>
+      <ToastContainer />
       <div className={styles.navbar}>
         <Logo />
       </div>
@@ -79,6 +89,9 @@ const Login = () => {
 
             <div className={styles.loginBtn} onClick={handleOnSubmit}>
               Login now
+            </div>
+            <div className={styles.registerLink} onClick={() => {navigate('/register')}}>
+              Create a new account?
             </div>
           </div>
         </div>

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import styles from "./Register.module.scss";
 
 import Logo from "../../components/Logo/Logo";
@@ -21,15 +24,20 @@ const Register = () => {
       .then(async (res) => {
         if (!res.ok) {
           // @TODO: display Error Message
-          console.log(res.message);
-          console.log(res);
           console.log(res.status);
+          // console.log(res.json());
+          res = await res.json();
+          console.log(res);
+          toast.error(res.message);
+          return;
         } else {
           // @TODO: redirect to dashboard With State
           console.log(res.status);
-          let data = await res.json();
+          res = await res.json();
+          toast.success("Login Successfull!!");
           navigate(`/`);
-					console.log(data);
+          console.log(res);
+          sessionStorage.setItem("Auth Token", res.token);
 					console.log("Registration Successfull!!")
         }
       })
@@ -85,6 +93,9 @@ const Register = () => {
 
             <div className={styles.registerBtn} onClick={handleOnSubmit}>
               Register now
+            </div>
+            <div className={styles.loginLink} onClick={() => {navigate('/login')}}>
+              Already have a account?
             </div>
           </form>
         </div>
