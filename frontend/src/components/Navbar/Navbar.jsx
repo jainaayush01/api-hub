@@ -9,25 +9,27 @@ const Header = ({ auth }) => {
   return (
     <header className={styles.navbar}>
       <Logo />
-      <div className={styles.rightNav}>
-        {auth ? (
-          <div>
-            <div className={styles.rig}>
-              <ul className={styles.list}>
-                <li>My APIs</li>
-                <li>My Account</li>
-              </ul>
-            </div>
-            <div className={styles.loginBtn} onClick={() => navigate("/login")}>
-              + New API
-            </div>
+      {auth ? (
+        <div className={styles.rightNav}>
+          <div className={styles.rightNavItem}>My APIs</div>
+          <div className={styles.rightNavItem}>My Account</div>
+          <div
+            className={styles.rightNavBtn}
+            onClick={() => navigate("/login")}
+          >
+            + New API
           </div>
-        ) : (
-          <div className={styles.loginBtn} onClick={() => navigate("/login")}>
+        </div>
+      ) : (
+        <div className={styles.rightNav}>
+          <div
+            className={styles.rightNavBtn}
+            onClick={() => navigate("/login")}
+          >
             Login/Signup
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 };

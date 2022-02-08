@@ -19,11 +19,25 @@
   height: 29px;
 }
 
-.list {
-  list-style: none;
+.rightNavItem {
+  width: 150px;
+  height: 44px;
+
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #1e272e;
 }
 
-.loginBtn {
+.rightNavBtn {
   background-color: #142683;
   width: 133px;
   height: 44px;
@@ -36,16 +50,16 @@
   justify-content: center;
   font-weight: bold;
 
-  position: absolute;
-  right: 30px;
-  top: 22px;
-  
   &:hover {
     cursor: pointer;
   }
 }
 
 .rightNav {
-  width: auto;
-  text-align: right;
+  display: flex;
+  flex-direction:row;
+  align-self: center;
+
+  margin-right: 2%;
+  margin-left: auto;
 }
