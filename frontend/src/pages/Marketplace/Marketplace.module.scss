@@ -2,7 +2,7 @@
 
 .body {
   background: #fafafa;
-  padding: 90px;
+  padding: 60px 90px;
 
   display: flex;
   flex-direction: column;
@@ -17,9 +17,11 @@
 }
 
 .cardsList {
-  display: grid;
-  grid: 270px / auto auto auto auto;
+  display: flex;
   grid-gap: 40px;
+  flex-flow: wrap;
+  align-content: space-between;
+  justify-content: space-between;
 }
 
 .cardsHeading {
@@ -33,4 +35,18 @@
   letter-spacing: -0.02em;
 
   color: #000000;
+}
+
+.secondaryText {
+  width: 480px;
+  height: 135px;
+
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+  letter-spacing: -0.02em;
+
+  color: #566474;
 }

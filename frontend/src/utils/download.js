@@ -1,11 +1,11 @@
 export const downloadImage = (image) => {
-	let element = document.createElement("a");
-	element.setAttribute("href", image);
-	element.setAttribute("download", "");
-	element.style.display = "none";
-	document.body.appendChild(element);
+  let element = document.createElement("a");
+  element.setAttribute("href", image);
+  element.setAttribute("download", "");
+  element.style.display = "none";
+  document.body.appendChild(element);
 
-	element.click();
+  element.click();
 
-	document.body.removeChild(element);
+  document.body.removeChild(element);
 };

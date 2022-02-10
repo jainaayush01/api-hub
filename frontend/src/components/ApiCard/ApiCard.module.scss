@@ -6,17 +6,17 @@
   flex-direction: column;
   // margin-top: 10%;
   // margin-bottom: 5%;
-  height: auto;
+  // height: auto;
 }
 
-.apiImage {
+.apiAvatar {
   width: 274px;
   height: 156px;
 }
 
 .primaryText {
   width: 224px;
-  height: 31px;
+  min-height: 31px;
 
   font-family: DM Sans;
   font-style: normal;
@@ -35,7 +35,7 @@
 .secondaryText {
   display: flex;
   width: 291px;
-  height: 42px;
+  // min-height: 42px;
 
   color: #566474;
 

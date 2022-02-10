@@ -17,31 +17,29 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     console.log({ name, email, password });
-    postData(`${BACKEND_URL}/api/user/signup`, { name, email, password })
-      .then(async (res) => {
-        if (!res.ok) {
-          // @TODO: display Error Message
-          console.log(res.status);
-          // console.log(res.json());
-          res = await res.json();
-          console.log(res);
-          toast.error(res.message);
-          return;
-        } else {
-          // @TODO: redirect to dashboard With State
-          console.log(res.status);
-          res = await res.json();
-          toast.success("Login Successfull!!");
-          navigate(`/`);
-          console.log(res);
-          sessionStorage.setItem("Auth Token", res.token);
-					console.log("Registration Successfull!!")
-        }
-      })
-      .catch((err) => console.log(err));
+    let res = await postData(`${BACKEND_URL}/api/user/signup`, {
+      name,
+      email,
+      password,
+    });
+    console.log(res);
+    if (res.message) {
+      // @TODO: display Error Message
+      toast.error(res.message);
+      res.errors.map((error) => {
+        console.log(error.msg);
+        toast.error(error.msg);
+      });
+      return;
+    } else {
+      // @TODO: redirect to dashboard With State
+      navigate(`/`);
+      sessionStorage.setItem("Auth Token", res.token);
+      console.log("Registration Successfull!!");
+    }
   };
 
   return (
@@ -94,7 +92,12 @@ const Register = () => {
             <div className={styles.registerBtn} onClick={handleOnSubmit}>
               Register now
             </div>
-            <div className={styles.loginLink} onClick={() => {navigate('/login')}}>
+            <div
+              className={styles.loginLink}
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
               Already have a account?
             </div>
           </form>

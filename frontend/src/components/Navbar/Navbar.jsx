@@ -34,8 +34,20 @@ const Header = ({ auth }) => {
       </SkyLight>
       {auth ? (
         <div className={styles.rightNav}>
-          <div className={styles.rightNavItem}>My APIs</div>
-          <div className={styles.rightNavItem}>My Account</div>
+          <div className={styles.navLinks}>
+            <div
+              className={styles.rightNavItem}
+              onClick={() => navigate("/myapis")}
+            >
+              My APIs
+            </div>
+            <div
+              className={styles.rightNavItem}
+              onClick={() => navigate("/myaccount")}
+            >
+              My Account
+            </div>
+          </div>
           <div
             className={styles.rightNavBtn}
             onClick={() => newApiModal.current.show()}

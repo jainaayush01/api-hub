@@ -6,7 +6,13 @@ import LogoImage from "../../assets/main-logo.svg";
 
 const Logo = () => {
   const navigate = useNavigate();
-  return <img src={LogoImage} className={styles.logo} onClick={() => navigate('/')}/>;
+  return (
+    <img
+      src={LogoImage}
+      className={styles.logo}
+      onClick={() => navigate("/")}
+    />
+  );
 };
 
 export default Logo;

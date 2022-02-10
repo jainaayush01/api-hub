@@ -16,34 +16,29 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     console.log({ email, password });
-    postData(`${BACKEND_URL}/api/user/login`, { email, password })
-      .then(async (res) => {
-        console.log(res);
-        if (!res.ok) {
-          // @TODO: display Error Message
-          console.log(res.status);
-          // console.log(res.json());
-          res = await res.json();
-          console.log(res);
-          toast.error(res.message);
-          return;
-        } else {
-          // @TODO: redirect to dashboard With State
-          console.log(res.status);
-          res = await res.json();
-          toast.success("Login Successfull!!");
-          navigate(`/`);
-          console.log(res);
-          sessionStorage.setItem("Auth Token", res.token);
-          console.log("Login Successfull!!");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+
+    let res = await postData(`${BACKEND_URL}/api/user/login`, {
+      email,
+      password,
+    });
+    console.log(res);
+    if (res.message) {
+      // @TODO: display Error Message
+      toast.error(res.message);
+      res.errors.map((error) => {
+        console.log(error.msg);
+        toast.error(error.msg);
       });
+      return;
+    } else {
+      // @TODO: redirect to dashboard With State
+      navigate(`/`);
+      sessionStorage.setItem("Auth Token", res.token);
+      console.log("Login Successfull!!");
+    }
   };
 
   return (
@@ -90,7 +85,12 @@ const Login = () => {
             <div className={styles.loginBtn} onClick={handleOnSubmit}>
               Login now
             </div>
-            <div className={styles.registerLink} onClick={() => {navigate('/register')}}>
+            <div
+              className={styles.registerLink}
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
               Create a new account?
             </div>
           </div>

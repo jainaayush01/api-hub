@@ -14,7 +14,31 @@ const ApiModal = () => {
   const [apiEndpoint, setApiEndpoint] = useState("");
   const [apiDescription, setApiDescription] = useState("");
 
-  const handleOnSubmit = (e) => {};
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    let authToken = sessionStorage.getItem("Auth Token");
+    postData(`${BACKEND_URL}/api/apis/new`, {
+      name: apiName,
+      endpoint: apiEndpoint,
+      description: apiDescription,
+      token: authToken,
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          console.log(res.status);
+          res = await res.json();
+          console.log(res);
+        } else {
+          console.log(res.status);
+          res = await res.json();
+          console.log(res);
+          navigate("/account");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className={styles.apiModal}>

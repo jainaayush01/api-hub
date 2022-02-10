@@ -1,15 +1,20 @@
 import React from "react";
 import styles from "./ApiCard.module.scss";
-import Image from "../../assets/apiImage.png";
+import Avatar from "../../assets/apiAvatar.png";
 
-const ApiCard = () => {
+const ApiCard = ({ apiName, apiEndpoint, apiDescription }) => {
   return (
     <div className={styles.apiCard}>
-      <img src={Image} className={styles.apiImage} alt="logo" />
-      <div className={styles.primaryText}> Background Remove </div>
-      <div className={styles.secondaryText}>
-        The descriptipn of the API in quick brief and we will truncate it here...
-      </div>
+      <img src={Avatar} className={styles.apiAvatar} alt="logo" />
+      <a
+        className={styles.link}
+        target="_blank"
+        href={apiEndpoint}
+        rel="noreferrer"
+      >
+        <div className={styles.primaryText}>{apiName}</div>
+      </a>
+      <div className={styles.secondaryText}>{apiDescription}</div>
     </div>
   );
 };
