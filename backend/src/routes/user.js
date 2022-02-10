@@ -66,7 +66,7 @@ router.post(
         },
       };
 
-      jwt.sign(payload, JWT_SECRET, { expiresIn: 10000 }, (err, token) => {
+      jwt.sign(payload, JWT_SECRET, (err, token) => {
         if (err) {
           throw err;
         }
@@ -131,7 +131,7 @@ router.post(
         },
       };
 
-      jwt.sign(payload, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
+      jwt.sign(payload, JWT_SECRET, (err, token) => {
         if (err) {
           throw err;
         }
