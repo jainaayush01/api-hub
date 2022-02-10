@@ -1,23 +1,26 @@
 const mongoose = require("mongoose");
 
-const UserSchema = mongoose.Schema({
+const APISchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-  email: {
+  endpoint: {
     type: String,
     required: true,
   },
-  password: {
+  description: {
     type: String,
     required: true,
   },
-  apis: [{ apiId: String }],
+  userId: {
+    type: mongoose.Types.ObjectId,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
   },
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("API", APISchema);

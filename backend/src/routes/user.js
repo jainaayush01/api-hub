@@ -42,7 +42,10 @@ router.post(
 
       if (user) {
         return res.status(400).json({
-          msg: "Existing user found. Please LogIn!",
+          message: "Bad Request Error",
+          errors: {
+            msg: "Existing user found. Please LogIn!",
+          },
         });
       }
 
@@ -148,7 +151,7 @@ router.post(
 );
 
 router.get("/protected", auth, async (req, res) => {
-  console.log(req.user);
+  console.log(req.body.user);
   res.status(200).json({
     message: "Protected Route only accessible to user",
   });

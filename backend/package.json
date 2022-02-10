@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "dev-debug": "set DEBUG=express:* & nodemon src/index.js",
     "lint": "npx eslint src/"
   },
   "author": "",
