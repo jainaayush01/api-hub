@@ -70,7 +70,6 @@ router.post(
       await user.save();
 
       return res.status(200).json({
-        message: "success",
         api: api,
         user: user,
       });

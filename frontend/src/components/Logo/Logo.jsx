@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Logo.module.scss";
 
-import LogoImage from "../../assets/main-logo.svg";
+import LogoImage from "../../assets/apiHubLogo.png";
 
 const Logo = () => {
   const navigate = useNavigate();
