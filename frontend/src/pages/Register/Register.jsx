@@ -5,9 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./Register.module.scss";
 
-import Logo from "../../components/Logo/Logo";
+import { Logo } from "../../components";
 import profileImage from "../../assets/profileImage.png";
-import { postData } from "../../utils/fetchData";
+import { postData } from "../../utils";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 

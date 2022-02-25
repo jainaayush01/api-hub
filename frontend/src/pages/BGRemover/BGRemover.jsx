@@ -5,11 +5,10 @@ import ImageUploading from "react-images-uploading";
 
 import styles from "./BGRemover.module.scss";
 
-import Logo from "../../components/Logo/Logo";
+import { Logo } from "../../components";
 import bannerImage from "../../assets/bannerImage.png";
 import uploadImage from "../../assets/uploadImage.png";
-import { postData } from "../../utils/fetchData";
-import { downloadImage } from "../../utils/download.js";
+import { postData, downloadImage } from "../../utils";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -29,12 +28,12 @@ const BGRemover = () => {
       image: JSON.stringify(images[0]),
     })
       .then(async (res) => {
-        if (!res.ok) {
-          res = await res.json();
+        if (res.error) {
+          // res = await res.json();
           toast.error(res.message);
           return;
         } else {
-          res = await res.json();
+          // res = await res.json();
           let base64image = btoa(
             new Uint8Array(res.image.data).reduce(
               (data, byte) => data + String.fromCharCode(byte),

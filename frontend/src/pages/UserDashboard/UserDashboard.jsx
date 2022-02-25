@@ -4,8 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
-import Navbar from "../../components/Navbar/Navbar";
-import ApiCard from "../../components/ApiCard/ApiCard";
+import { ApiCard, Navbar } from "../../components";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 

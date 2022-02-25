@@ -3,9 +3,7 @@ import styles from "./Marketplace.module.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Navbar from "../../components/Navbar/Navbar";
-import ApiCard from "../../components/ApiCard/ApiCard";
-import Banner from "../../components/Banner/Banner";
+import { Navbar, ApiCard, Banner } from "../../components";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
