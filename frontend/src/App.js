@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { Navbar } from "./components";
+import "react-toastify/dist/ReactToastify.css";
 
+import { Navbar } from "./components";
 import {
   Login,
   Marketplace,
