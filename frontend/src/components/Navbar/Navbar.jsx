@@ -10,10 +10,12 @@ const Header = () => {
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
+    console.log(authToken);
     if (authToken) {
       setAuthenticated(true);
     }
-  }, []);
+  });
+  // removed [] because when user login or registers the navbar component doesnt re-render but we need the authenticated state to change so we re-render navbar
 
   return (
     <header className={styles.navbar}>
