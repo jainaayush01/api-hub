@@ -116,7 +116,7 @@ router.delete(
     if (!errors.isEmpty()) {
       return res.status(400).json({
         message: "Validation Error",
-        errors: errors.array(),
+        error: errors.array(),
       });
     }
     try {
