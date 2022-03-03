@@ -1,4 +1,4 @@
-import { postData, getData } from "./fetchData";
+import { fetchData } from "./fetchData";
 import { downloadImage } from "./download";
 
-export { postData, getData, downloadImage };
+export { fetchData, downloadImage };

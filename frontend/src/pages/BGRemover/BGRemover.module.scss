@@ -1,21 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
 
-.navbar {
-  height: 88px;
-  width: 100%;
-  border-bottom: 1px solid #f7f8fa;
-  display: flex;
-}
-
 .body {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .infoBox {
   width: 50%;
-  // height: 812px;
-  padding-top: 138px;
+  height: calc(100vh - 88px);
 
   display: flex;
   flex-direction: column;
@@ -62,17 +56,15 @@
 
 .uploadBox {
   width: 50%;
-  padding-top: 138px;
-  padding-bottom: 138px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .uploadForm {
   width: 498px;
-  // height: 404px;
 
   border: 1px solid #dfe0e0;
   box-sizing: border-box;
@@ -143,7 +135,6 @@
   margin-top: 8.11%;
   margin-bottom: 5.44%;
   width: 100%;
-  // height: 100px;
 
   display: flex;
   flex-direction: row;
@@ -173,13 +164,14 @@
   display: flex;
   margin: 10px 0;
 }
+
 .imageItemBtnWrapper {
   display: flex;
   flex-direction: column;
-  // align-items: center;
   justify-content: center;
   margin-left: 10px;
 }
+
 button {
   height: 40px;
   margin-bottom: 5px;

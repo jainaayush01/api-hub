@@ -1,17 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
 
 .apiCard {
-  // background: #E5E5E5;
   display: flex;
   flex-direction: column;
-  // margin-top: 10%;
-  // margin-bottom: 5%;
-  // height: auto;
 }
 
 .apiAvatar {
-  width: 274px;
+  // width: 274px;
   height: 156px;
+}
+
+.apiTitle {
+  display: flex;
+  justify-content: space-between;
 }
 
 .primaryText {
@@ -24,6 +25,7 @@
   font-size: 24px;
   line-height: 31px;
   letter-spacing: -0.02em;
+  word-break: break-word;
 
   display: flex;
   padding-top: 10%;
@@ -36,6 +38,8 @@
   display: flex;
   width: 291px;
   // min-height: 42px;
+  margin-left: 1%;
+  word-break: break-word;
 
   color: #566474;
 
@@ -45,4 +49,12 @@
   font-size: 16px;
   line-height: 21px;
   letter-spacing: -0.02em;
+}
+
+.editBtn {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  margin-left: 2%;
+  margin-right: 2%;
 }

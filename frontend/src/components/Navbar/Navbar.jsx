@@ -1,38 +1,24 @@
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SkyLight from "react-skylight";
 
-import APIModal from "../ApiModal/ApiModal";
 import styles from "./Navbar.module.scss";
 import Logo from "../Logo/Logo";
 
-const Header = ({ auth }) => {
+const Header = () => {
+  const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
-  const newApiModal = useRef();
 
-  const modalStyle = {
-    position: "absolute",
-    width: "498px",
-    height: "515px",
-    left: "595px",
-    top: "140px",
-    margin: "0 auto",
-    border: "1px solid #dfe0e0",
-    boxSizing: "border-box",
-    borderRadius: "10px",
-  };
+  useEffect(() => {
+    let authToken = sessionStorage.getItem("Auth Token");
+    if (authToken) {
+      setAuthenticated(true);
+    }
+  }, []);
 
   return (
     <header className={styles.navbar}>
       <Logo />
-      <SkyLight
-        dialogStyles={modalStyle}
-        hideOnOverlayClicked
-        ref={newApiModal}
-      >
-        <APIModal />
-      </SkyLight>
-      {auth ? (
+      {authenticated ? (
         <div className={styles.rightNav}>
           <div className={styles.navLinks}>
             <div
@@ -50,7 +36,7 @@ const Header = ({ auth }) => {
           </div>
           <div
             className={styles.rightNavBtn}
-            onClick={() => newApiModal.current.show()}
+            onClick={() => navigate("/newapi")}
           >
             + New API
           </div>
