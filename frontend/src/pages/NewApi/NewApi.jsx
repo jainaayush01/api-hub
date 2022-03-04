@@ -16,24 +16,29 @@ const NewApi = ({ toast }) => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     let authToken = sessionStorage.getItem("Auth Token");
-    let res = await fetchData(
-      "POST",
-      `${BACKEND_URL}/api/apis/new`,
-      {
-        name: apiName,
-        endpoint: apiEndpoint,
-        description: apiDescription,
-      },
-      authToken,
-    );
-    if (res.message) {
-      console.log(res);
+    if (authToken) {
+      try {
+        let res = await fetchData(
+          "POST",
+          `${BACKEND_URL}/api/apis/new`,
+          {
+            name: apiName,
+            endpoint: apiEndpoint,
+            description: apiDescription,
+          },
+          authToken,
+        );
+        if (res.success) {
+          navigate("/myapis");
+          toast.success(res.message);
+        }
+        return;
+      } catch (err) {
+        toast.error("Internal Server Error");
+      }
     } else {
-      console.log(res);
-      navigate("/myapis");
-      toast.success("API Created Successfully");
+      navigate("/login");
     }
-    return;
   };
 
   return (
@@ -71,7 +76,7 @@ const NewApi = ({ toast }) => {
 };
 
 NewApi.propTypes = {
-  toast: PropTypes.object,
+  toast: PropTypes.func,
 };
 
 export default NewApi;

@@ -16,26 +16,20 @@ const Login = ({ toast }) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log({ email, password });
-
-    let res = await fetchData("POST", `${BACKEND_URL}/api/user/login`, {
-      email,
-      password,
-    });
-    console.log(res);
-    if (res.message) {
-      // @TODO: display Error Message
-      toast.error(res.message);
-      res.errors.map((error) => {
-        console.log(error.msg);
-        toast.error(error.msg);
+    try {
+      let res = await fetchData("POST", `${BACKEND_URL}/api/user/login`, {
+        email,
+        password,
       });
-      return;
-    } else {
-      navigate(`/`);
-      sessionStorage.setItem("Auth Token", res.token);
-      console.log("Login Successful!!");
-      toast.success("Login Successful!!");
+      if (res.success) {
+        navigate("/");
+        toast.success(res.message);
+        sessionStorage.setItem("Auth Token", res.token);
+      } else {
+        toast.error(res.errorMessage);
+      }
+    } catch (err) {
+      toast.error("Internal Server Error");
     }
   };
 
@@ -91,7 +85,7 @@ const Login = ({ toast }) => {
 };
 
 Login.propTypes = {
-  toast: PropTypes.object,
+  toast: PropTypes.func,
 };
 
 export default Login;

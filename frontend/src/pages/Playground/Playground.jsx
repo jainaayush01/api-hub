@@ -63,38 +63,36 @@ function OneField({
     <div id={idx}>
       <Input value={key} onChange={handleKey} />
       <Input value={value} onChange={handleValue} />
-      {props.key}
-      {props.value}
       <Button onClick={handleRemoveHeader}>-</Button>
     </div>
   );
 }
 
-function Headers({ fields, setFields }) {
+function Headers({ headerFields, setHeaderFields }) {
   const handleAddHeader = () => {
-    setFields([...fields, { key: "hello", value: "hi" }]);
+    setHeaderFields([...headerFields, { key: "hello", value: "hi" }]);
   };
   const handleRemoveHeader = (e) => {
     let id = parseInt(e.target.parentElement.id);
-    if (id === 0 && fields.length === 1) {
-      setFields([]);
+    if (id === 0 && headerFields.length === 1) {
+      setHeaderFields([]);
     } else {
-      let newFields1 = fields.slice(0, id);
-      let newFields2 = fields.slice(id + 1);
+      let newFields1 = headerFields.slice(0, id);
+      let newFields2 = headerFields.slice(id + 1);
 
-      setFields([...newFields1, ...newFields2]);
+      setHeaderFields([...newFields1, ...newFields2]);
     }
   };
 
   const handleKeyValuePairChange = (idx, keyValuePair) => {
-    let newFields = [...fields];
+    let newFields = [...headerFields];
     newFields[idx] = { key: keyValuePair.key, value: keyValuePair.value };
-    setFields([...newFields]);
+    setHeaderFields([...newFields]);
   };
 
   return (
     <Tab.Pane>
-      {fields.map((elem, idx) => {
+      {headerFields.map((elem, idx) => {
         return (
           <div key={idx}>
             <OneField
@@ -167,7 +165,10 @@ const panes = [
   {
     menuItem: "Headers",
     render: (props) => (
-      <Headers fields={props.fields} setFields={props.setFields} />
+      <Headers
+        headerFields={props.headerFields}
+        setHeaderFields={props.setHeaderFields}
+      />
     ),
   },
   {
@@ -205,18 +206,25 @@ const generateURL = (url, queryFields) => {
   console.log(tempUrl);
 };
 
+const convertArrayToObject = (objArr) => {
+  let obj = {};
+  objArr.forEach((elem) => {
+    obj[elem["key"]] = elem["value"];
+  });
+  return obj;
+};
+
 const Playground = () => {
-  const [fields, setFields] = useState([]);
+  const [headerFields, setHeaderFields] = useState([]);
   const [queryFields, setQueryFields] = useState([]);
   const [json, setJson] = useState("{}");
   const [url, setUrl] = useState("");
   const [method, setMethod] = useState("GET");
-  const [response, setResponse] = useState({
-    message: "hii",
-  });
+  const [response, setResponse] = useState({});
 
   const handleRequest = async () => {
-    console.log(fields);
+    const headers = convertArrayToObject(headerFields);
+    console.log(headers);
     console.log(queryFields);
     console.log(json);
     console.log(url);
@@ -236,7 +244,7 @@ const Playground = () => {
       var resClone;
       let res = await fetch(tempUrl, {
         method: method,
-        headers: fields,
+        headers: headers,
         body: body,
       });
       resClone = res.clone();
@@ -279,8 +287,8 @@ const Playground = () => {
         <Container>
           <Tab
             panes={panes}
-            fields={fields}
-            setFields={setFields}
+            headerFields={headerFields}
+            setHeaderFields={setHeaderFields}
             queryFields={queryFields}
             setQueryFields={setQueryFields}
             json={json}

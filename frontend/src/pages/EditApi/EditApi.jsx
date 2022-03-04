@@ -41,23 +41,25 @@ const EditApi = ({ toast }) => {
       navigate("/myapis");
       toast.success("Details Updated Successfully");
     } else {
-      let res = await fetchData(
-        "PATCH",
-        `${BACKEND_URL}/api/apis/${apiId}`,
-        {
-          name: apiName,
-          endpoint: apiEndpoint,
-          description: apiDescription,
-        },
-        authToken,
-      );
-      if (res.message) {
-        console.log(res);
-        toast.error(res.message);
-      } else {
-        console.log(res);
-        navigate("/myapis");
-        toast.success("Details Updated Successfully");
+      try {
+        let res = await fetchData(
+          "PATCH",
+          `${BACKEND_URL}/api/apis/${apiId}`,
+          {
+            name: apiName,
+            endpoint: apiEndpoint,
+            description: apiDescription,
+          },
+          authToken,
+        );
+        if (res.success) {
+          toast.success(res.message);
+          navigate("/myapis");
+        } else {
+          toast.error(res.errorMessage);
+        }
+      } catch (err) {
+        toast.error("Internal Server Error");
       }
     }
     return;
@@ -65,23 +67,29 @@ const EditApi = ({ toast }) => {
   const handleOnDelete = async (e) => {
     e.preventDefault();
     let authToken = sessionStorage.getItem("Auth Token");
-    let res = await fetchData(
-      "DELETE",
-      `${BACKEND_URL}/api/apis/${apiId}`,
-      {},
-      authToken,
-    );
-    if (!res.error) {
-      toast.success(res.message);
-      navigate("/myapis");
+    if (authToken) {
+      try {
+        let res = await fetchData(
+          "DELETE",
+          `${BACKEND_URL}/api/apis/${apiId}`,
+          {},
+          authToken,
+        );
+        if (res.success) {
+          toast.success(res.message);
+          navigate("/myapis");
+        } else {
+          toast.error(res.errorMessage);
+        }
+      } catch (err) {
+        toast.error("Internal Server Error");
+      }
     } else {
-      toast.error(res.message);
+      navigate("/login");
     }
   };
 
   useEffect(() => {
-    console.log(location);
-    console.log(location.state);
     if (location.state) {
       setApiName(location.state.apiName);
       setApiDescription(location.state.apiDescription);
@@ -128,7 +136,7 @@ const EditApi = ({ toast }) => {
 };
 
 EditApi.propTypes = {
-  toast: PropTypes.object,
+  toast: PropTypes.func,
 };
 
 export default EditApi;

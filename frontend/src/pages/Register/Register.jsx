@@ -17,27 +17,21 @@ const Register = ({ toast }) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log({ name, email, password });
-    let res = await fetchData("POST", `${BACKEND_URL}/api/user/signup`, {
-      name,
-      email,
-      password,
-    });
-    console.log(res);
-    if (res.message) {
-      // @TODO: display Error Message
-      toast.error(res.message);
-      res.errors.map((error) => {
-        console.log(error.msg);
-        toast.error(error.msg);
+    try {
+      let res = await fetchData("POST", `${BACKEND_URL}/api/user/signup`, {
+        name,
+        email,
+        password,
       });
-      return;
-    } else {
-      // @TODO: redirect to dashboard With State
-      navigate(`/`);
-      sessionStorage.setItem("Auth Token", res.token);
-      console.log("Registration Successfull!!");
-      toast.success("Registration Successful!!");
+      if (res.success) {
+        navigate("/myapis");
+        sessionStorage.setItem("Auth Token", res.token);
+        toast.success(res.message);
+      } else {
+        toast.error(res.errorMessage);
+      }
+    } catch (err) {
+      toast.error("Internal Server Error");
     }
   };
 
@@ -100,7 +94,7 @@ const Register = ({ toast }) => {
 };
 
 Register.propTypes = {
-  toast: PropTypes.object,
+  toast: PropTypes.func,
 };
 
 export default Register;

@@ -10,7 +10,7 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   const { image } = req.body;
   // console.log(req.body);
-  console.log(typeof image);
+  // console.log(typeof image);
   const imageData = image.substring(image.indexOf(",") + 1);
   fs.writeFileSync("download.png", imageData, { encoding: "base64" });
 
@@ -37,24 +37,26 @@ router.post("/", async (req, res) => {
     .then((response) => {
       if (response.status != 200) {
         res.status(500).json({
-          message: "Internal Server Error",
-          error: response.statusText,
+          success: false,
+          errorType: "Internal Server Error",
+          errorMessage: response.statusText,
         });
         return;
       }
 
       res.status(200).json({
-        message: "Sucessfull background removal",
+        success: true,
+        message: "Background Removal Successful",
         image: response.data,
       });
       return;
     })
-    .catch((error) => {
+    .catch((err) => {
       res.status(500).json({
-        message: "Internal Server Error",
-        error: error.statusText,
+        success: false,
+        errorType: "Internal Server Error",
+        errorMessage: err.statusText,
       });
-      return console.error("Request failed:", error);
     });
 });
 

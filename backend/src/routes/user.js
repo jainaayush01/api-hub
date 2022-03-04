@@ -29,8 +29,10 @@ router.post(
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
-        message: "Validation Error",
-        errors: errors.array(),
+        success: false,
+        errorType: "Bad Request",
+        errorMessage: "Validation Error",
+        // errors: errors.array(), // do not send which fields are missing or incorrect as it may give away your model's fields which are required required
       });
     }
 
@@ -42,10 +44,9 @@ router.post(
 
       if (user) {
         return res.status(400).json({
-          message: "Bad Request Error",
-          errors: {
-            msg: "Existing user found. Please LogIn!",
-          },
+          success: false,
+          errorType: "Bad Request",
+          errorMessage: "User already Exists",
         });
       }
 
@@ -72,13 +73,16 @@ router.post(
         }
 
         res.status(200).json({
-          token,
+          success: true,
+          token: token,
+          message: "Registration Successful",
         });
       });
     } catch (err) {
-      console.log(err.message);
       res.status(500).json({
-        message: "Internal Server Error",
+        success: false,
+        errorType: "Internal Server Error",
+        errorMessage: "Internal Server Error",
       });
     }
   },
@@ -103,8 +107,10 @@ router.post(
 
     if (!errors.isEmpty()) {
       return res.status(400).json({
-        message: "Validation Error!",
-        errors: errors.array(),
+        success: false,
+        errorType: "Bad Request",
+        errorMessage: "Validation Error",
+        // errors: errors.array(),
       });
     }
 
@@ -114,14 +120,18 @@ router.post(
 
       if (!user) {
         return res.status(400).json({
-          message: "User does not exist. Please register your account!",
+          success: false,
+          errorType: "Bad Request",
+          errorMessage: "Incorrect email and password", // user dne
         });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
         return res.status(400).json({
-          message: "Password is incorrect. Please try again!",
+          success: false,
+          errorType: "Bad Request",
+          errorMessage: "Incorrect email and password", // incorrect password
         });
       }
 
@@ -137,22 +147,24 @@ router.post(
         }
 
         res.status(200).json({
-          token,
+          success: true,
+          token: token,
+          message: "Login Successful",
         });
       });
     } catch (err) {
-      console.error(err);
-
       res.status(500).json({
-        message: "Internal Server Error",
+        success: false,
+        errorType: "Internal Server Error",
+        errorMessage: "Internal Server Error",
       });
     }
   },
 );
 
 router.get("/protected", auth, async (req, res) => {
-  console.log(req.body.user);
   res.status(200).json({
+    success: true,
     message: "Protected Route only accessible to user",
   });
 });

@@ -10,12 +10,16 @@ const auth = require("../middlewares/auth");
 router.get("/all", async (req, res) => {
   try {
     let apis = await API.find({});
-    return res.status(200).json({ apis });
+    return res.status(200).json({
+      success: true,
+      apis: apis,
+      message: "Successful Request",
+    });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({
-      message: "Internal Server Error",
-      error: err,
+      success: false,
+      errorType: "Internal Server Error",
+      errorMessage: "Internal Server Error",
     });
   }
 });
@@ -28,12 +32,16 @@ router.get("/user/all", auth, async (req, res) => {
     });
 
     let apis = await API.find({ _id: { $in: apiIds } });
-    return res.status(200).json({ apis });
+    return res.status(200).json({
+      success: true,
+      apis: apis,
+      message: "Successful Request",
+    });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({
-      message: "Internal Server Error",
-      error: err,
+      success: false,
+      errorType: "Internal Server Error",
+      errorMessage: "Internal Server Error",
     });
   }
 });
@@ -50,8 +58,9 @@ router.post(
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
-        message: "Bad Request Error",
-        errors: errors.array(),
+        success: false,
+        errorType: "Bad Request",
+        errorMessage: "Validation Error",
       });
     }
     const _user = req.body.user;
@@ -70,14 +79,16 @@ router.post(
       await user.save();
 
       return res.status(200).json({
+        success: true,
+        message: "API Creation Successful",
         api: api,
         user: user,
       });
     } catch (err) {
-      console.log(err);
       return res.status(500).json({
-        message: "Internal Server Error",
-        error: err,
+        success: false,
+        errorType: "Internal Server Error",
+        errorMessage: "Internal Server Error",
       });
     }
   },
@@ -90,18 +101,23 @@ router.get(
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
-        message: "Validation Error",
-        errors: errors.array(),
+        success: false,
+        errorType: "Bad Request",
+        errorMessage: "Validation Error",
       });
     }
     try {
       let api = await API.findOne({ _id: req.params.apiId });
-      return res.status(200).json({ api });
+      return res.status(200).json({
+        success: true,
+        message: "Successful Request",
+        api: api,
+      });
     } catch (err) {
-      console.log(err);
       return res.status(500).json({
-        message: "Internal Server Error",
-        error: err,
+        success: false,
+        errorType: "Internal Server Error",
+        errorMessage: "Internal Server Error",
       });
     }
   },
@@ -115,27 +131,31 @@ router.delete(
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
-        message: "Validation Error",
-        error: errors.array(),
+        success: false,
+        errorType: "Bad Request",
+        errorMessage: "Validation Error",
       });
     }
     try {
       let { deletedCount } = await API.deleteOne({ _id: req.params.apiId });
       if (deletedCount) {
         return res.status(200).json({
-          message: "Successfuly Deleted",
+          success: true,
+          message: "Deletion Successful",
           deletedCount,
         });
       } else {
         return res.status(201).json({
+          success: true,
           message: "No such API found",
+          deletedCount: 0,
         });
       }
     } catch (err) {
-      console.log(err);
       return res.status(500).json({
-        message: "Internal Server Error",
-        error: err,
+        success: false,
+        errorType: "Internal Server Error",
+        errorMessage: "Internal Server Error",
       });
     }
   },
@@ -157,23 +177,28 @@ router.patch(
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
-        message: "Validation Error",
-        errors: errors.array(),
+        success: false,
+        errorType: "Bad Request",
+        errorMessage: "Validation Error",
       });
     }
     try {
       let api = await API.findOne({ _id: req.params.apiId });
       if (api.userId != req.body.user.id) {
         // !== gives error since we have stored api.userId as MongoDb Object Id
-        return res.status(400).json({
-          message: "This API is not owned by this user.",
+        return res.status(403).json({
+          success: false,
+          errorType: "Forbidden",
+          errorMessage: "This API is not owned by this user",
         });
       }
       const { name, endpoint, description } = req.body;
 
       if (!name && !endpoint && !description) {
         return res.status(400).json({
-          message: "Provide a field to update.",
+          success: false,
+          errorType: "Bad Request",
+          errorMessage: "data not updated due to no changes",
         });
       }
 
@@ -188,12 +213,16 @@ router.patch(
       }
 
       await api.save();
-      return res.status(200).json({ api });
+      return res.status(200).json({
+        success: true,
+        message: "Update Successful",
+        api: api,
+      });
     } catch (err) {
-      console.log(err);
       return res.status(500).json({
-        message: "Internal Server Error",
-        error: err,
+        success: false,
+        errorType: "Internal Server Error",
+        errorMessage: "Internal Server Error",
       });
     }
   },

@@ -35,11 +35,7 @@ const App = () => {
             path="/myaccount"
             element={<UserDashboard toast={toast} />}
           />
-          <Route
-            exact
-            path="/myapis"
-            element={<UserDashboard toast={toast} />}
-          />
+          <Route exact path="/myapis" element={<UserDashboard />} />
           <Route exact path="/explore" element={<Playground toast={toast} />} />
           <Route exact path="/editapi" element={<EditApi toast={toast} />} />
           <Route exact path="/newapi" element={<NewApi toast={toast} />} />

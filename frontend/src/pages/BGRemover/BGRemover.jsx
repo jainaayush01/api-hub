@@ -15,36 +15,36 @@ const BGRemover = ({ toast }) => {
   const maxNumber = 1;
   const maxFileSize = 524288000;
   const onChange = (imageList, addUpdateIndex) => {
-    console.log(imageList, addUpdateIndex);
+    // console.log(imageList, addUpdateIndex);
     setImages(imageList);
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(images);
-    fetchData("POST", `${BACKEND_URL}/api/bgremover`, {
-      image: JSON.stringify(images[0]),
-    })
-      .then(async (res) => {
-        if (res.error) {
-          // res = await res.json();
-          toast.error(res.message);
-          return;
-        } else {
-          // res = await res.json();
-          let base64image = btoa(
-            new Uint8Array(res.image.data).reduce(
-              (data, byte) => data + String.fromCharCode(byte),
-              "",
-            ),
-          );
-          let image = `data:image/png;base64,${base64image}`;
-          setImages([]);
-          toast.success("Successful Background Removal");
-          downloadImage(image);
-        }
-      })
-      .catch((err) => console.log(err));
+    try {
+      let res = await fetchData("POST", `${BACKEND_URL}/api/bgremover`, {
+        image: JSON.stringify(images[0]),
+      });
+      if (res.success) {
+        toast.success(res.message);
+
+        let base64image = btoa(
+          new Uint8Array(res.image.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            "",
+          ),
+        );
+        let image = `data:image/png;base64,${base64image}`;
+
+        setImages([]);
+        downloadImage(image);
+        return;
+      } else {
+        toast.error(res.errorMessage);
+      }
+    } catch (err) {
+      toast.error("Internal Server Error");
+    }
   };
 
   return (
@@ -135,7 +135,7 @@ const BGRemover = ({ toast }) => {
 };
 
 BGRemover.propTypes = {
-  toast: PropTypes.object,
+  toast: PropTypes.func,
 };
 
 export default BGRemover;

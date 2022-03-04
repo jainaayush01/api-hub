@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.scss";
 import Logo from "../Logo/Logo";
 
-const Header = () => {
+const Navbar = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
-    console.log(authToken);
     if (authToken) {
       setAuthenticated(true);
     }
@@ -57,4 +56,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

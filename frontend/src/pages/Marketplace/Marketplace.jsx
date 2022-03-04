@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Marketplace.module.scss";
 import PropTypes from "prop-types";
+
 import { ApiCard, Banner } from "../../components";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
-const Marketplace = () => {
+const Marketplace = ({ toast }) => {
   const [allApis, setAllApis] = useState([]);
 
   useEffect(async () => {
-    let res = await fetch(`${BACKEND_URL}/api/apis/all`, {
-      method: "GET",
-    });
+    try {
+      let res = await fetch(`${BACKEND_URL}/api/apis/all`, {
+        method: "GET",
+      });
 
-    console.log(res.status);
-    if (!res.ok) {
-      res = await res.json();
-      console.log(res);
-    } else {
-      res = await res.json();
-      setAllApis([...res.apis]);
-      console.log(res);
+      if (!res.ok) {
+        res = await res.json();
+      } else {
+        res = await res.json();
+        setAllApis([...res.apis]);
+      }
+    } catch (err) {
+      toast.error("Internal Server Error");
     }
   }, []);
 
@@ -54,7 +56,7 @@ const Marketplace = () => {
 };
 
 Marketplace.propTypes = {
-  toast: PropTypes.object,
+  toast: PropTypes.func,
 };
 
 export default Marketplace;
