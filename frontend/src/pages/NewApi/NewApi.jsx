@@ -31,6 +31,8 @@ const NewApi = ({ toast }) => {
         if (res.success) {
           navigate("/myapis");
           toast.success(res.message);
+        } else {
+          toast.error(res.errorMessage);
         }
         return;
       } catch (err) {
