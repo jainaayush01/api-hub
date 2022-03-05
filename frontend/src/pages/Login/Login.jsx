@@ -6,6 +6,7 @@ import styles from "./Login.module.scss";
 
 import profileImage from "../../assets/profileImage.png";
 import { fetchData } from "../../utils";
+import { checkIsEmail, checkIsLength } from "../../utils";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -16,6 +17,14 @@ const Login = ({ toast }) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    if (!checkIsEmail(email)) {
+      toast.error("Invalid email address");
+      return;
+    }
+    if (!checkIsLength(password, 6)) {
+      toast.error("Password length less than 6");
+      return;
+    }
     try {
       let res = await fetchData("POST", `${BACKEND_URL}/api/user/login`, {
         email,

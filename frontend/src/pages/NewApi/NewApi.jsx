@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import styles from "./NewApi.module.scss";
-import { fetchData } from "../../utils/fetchData";
+import { fetchData } from "../../utils";
+import { checkIsLength, checkIsURL } from "../../utils";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -17,6 +18,18 @@ const NewApi = ({ toast }) => {
     e.preventDefault();
     let authToken = sessionStorage.getItem("Auth Token");
     if (authToken) {
+      if (!checkIsLength(apiName, 1)) {
+        toast.error("API Name cannot be empty");
+        return;
+      }
+      if (!checkIsURL(apiEndpoint)) {
+        toast.error("Invalid API URL Endpoint");
+        return;
+      }
+      if (!checkIsLength(apiDescription, 1)) {
+        toast.error("API Description cannot be empty");
+        return;
+      }
       try {
         let res = await fetchData(
           "POST",

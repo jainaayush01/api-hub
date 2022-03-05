@@ -6,6 +6,7 @@ import styles from "./Register.module.scss";
 
 import profileImage from "../../assets/profileImage.png";
 import { fetchData } from "../../utils";
+import { checkIsEmail, checkIsLength } from "../../utils";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -17,6 +18,18 @@ const Register = ({ toast }) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    if (!checkIsEmail(email)) {
+      toast.error("Invalid email address");
+      return;
+    }
+    if (!checkIsLength(password, 6)) {
+      toast.error("Password length less than 6");
+      return;
+    }
+    if (!checkIsLength(name, 1)) {
+      toast.error("Name cannot be empty");
+      return;
+    }
     try {
       let res = await fetchData("POST", `${BACKEND_URL}/api/user/signup`, {
         name,

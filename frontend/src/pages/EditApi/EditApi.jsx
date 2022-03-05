@@ -3,7 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import styles from "./EditApi.module.scss";
-import { fetchData } from "../../utils/fetchData";
+import { fetchData } from "../../utils";
+import { checkIsLength, checkIsURL } from "../../utils";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -41,6 +42,18 @@ const EditApi = ({ toast }) => {
       navigate("/myapis");
       toast.success("Details Updated Successfully");
     } else {
+      if (!checkIsLength(apiName, 1)) {
+        toast.error("API Name cannot be empty");
+        return;
+      }
+      if (!checkIsURL(apiEndpoint)) {
+        toast.error("Invalid API URL Endpoint");
+        return;
+      }
+      if (!checkIsLength(apiDescription, 1)) {
+        toast.error("API Description cannot be empty");
+        return;
+      }
       try {
         let res = await fetchData(
           "PATCH",
