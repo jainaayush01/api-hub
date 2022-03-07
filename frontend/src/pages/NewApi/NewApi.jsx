@@ -42,7 +42,7 @@ const NewApi = ({ toast }) => {
           authToken,
         );
         if (res.success) {
-          navigate("/myapis");
+          navigate("/apis");
           toast.success(res.message);
         } else {
           toast.error(res.errorMessage);

@@ -19,7 +19,9 @@ const Navbar = () => {
   const handleLogout = () => {
     sessionStorage.removeItem("Auth Token");
     setAuthenticated(false);
+    navigate("/");
   };
+
   return (
     <header className={styles.navbar}>
       <Logo />

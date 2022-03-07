@@ -39,7 +39,7 @@ const EditApi = ({ toast }) => {
       apiDescription,
     );
     if (checkData === true) {
-      navigate("/myapis");
+      navigate("/apis");
       toast.success("Details Updated Successfully");
     } else {
       if (!checkIsLength(apiName, 1)) {
@@ -67,7 +67,7 @@ const EditApi = ({ toast }) => {
         );
         if (res.success) {
           toast.success(res.message);
-          navigate("/myapis");
+          navigate("/apis");
         } else {
           toast.error(res.errorMessage);
         }
@@ -91,7 +91,7 @@ const EditApi = ({ toast }) => {
         );
         if (res.success) {
           toast.success(res.message);
-          navigate("/myapis");
+          navigate("/apis");
         } else {
           toast.error(res.errorMessage);
         }
