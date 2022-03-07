@@ -8,7 +8,7 @@ const ApiCard = ({ apiName, apiEndpoint, apiDescription, apiId, edit }) => {
   const navigate = useNavigate();
 
   const handleEditModal = () => {
-    navigate("/editapi", {
+    navigate("/api/edit", {
       state: {
         apiName,
         apiDescription,

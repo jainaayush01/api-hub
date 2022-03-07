@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+
+.tabPane {
+  font-family: DM Sans !important;
+  display: flex;
+  flex-direction: row;
+  // align-items: center;
+  grid-gap: 10px;
+}
+
+.fieldWrapper {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 190px;
+  grid-gap: 10px;
+}
+
+.inputWrapper {
+  font-family: DM Sans;
+  display: flex;
+  flex-direction: row;
+  grid-gap: 10px;
+}
+
+.textArea {
+  width: 70%;
+  height: 100%;
+  overflow: auto;
+  resize: none;
+
+  font-family: 'Courier New', Courier, monospace !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: -0em;
+
+  background-color: #FBFBFC;
+}
+
+.removeBtn {
+  font-family: DM Sans !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: -0em;
+
+  color: red !important;
+  border: 2px solid red !important;
+  background-color: white !important;
+
+  &:hover {
+    background-color: red !important;
+    color: white !important;
+    border: 2px solid red !important;
+  }
+}
+
+.addBtn {
+  font-family: DM Sans !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: -0em;
+
+  color: #016936 !important;
+  border: 2px solid #016936 !important;
+  background-color: white !important;
+
+  &:hover {
+    background-color: #016936 !important;
+    color: white !important;
+    border: 2px solid #016936 !important;
+  }
+}

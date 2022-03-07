@@ -16,6 +16,10 @@ const Navbar = () => {
   });
   // removed [] because when user login or registers the navbar component doesnt re-render but we need the authenticated state to change so we re-render navbar
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("Auth Token");
+    setAuthenticated(false);
+  };
   return (
     <header className={styles.navbar}>
       <Logo />
@@ -24,26 +28,35 @@ const Navbar = () => {
           <div className={styles.navLinks}>
             <div
               className={styles.rightNavItem}
-              onClick={() => navigate("/myapis")}
+              onClick={() => navigate("/apis")}
             >
               My APIs
             </div>
             <div
               className={styles.rightNavItem}
-              onClick={() => navigate("/myaccount")}
+              onClick={() => navigate("/playground")}
             >
-              My Account
+              Playground
             </div>
           </div>
           <div
             className={styles.rightNavBtn}
-            onClick={() => navigate("/newapi")}
+            onClick={() => navigate("/api/create")}
           >
             + New API
+          </div>
+          <div className={styles.rightNavBtn} onClick={handleLogout}>
+            Logout
           </div>
         </div>
       ) : (
         <div className={styles.rightNav}>
+          <div
+            className={styles.rightNavItem}
+            onClick={() => navigate("/playground")}
+          >
+            Playground
+          </div>
           <div
             className={styles.rightNavBtn}
             onClick={() => navigate("/login")}

@@ -77,6 +77,7 @@ const EditApi = ({ toast }) => {
     }
     return;
   };
+
   const handleOnDelete = async (e) => {
     e.preventDefault();
     let authToken = sessionStorage.getItem("Auth Token");
@@ -108,6 +109,8 @@ const EditApi = ({ toast }) => {
       setApiDescription(location.state.apiDescription);
       setApiEndpoint(location.state.apiEndpoint);
       setApiId(location.state.apiId);
+    } else {
+      navigate("/apis");
     }
   }, []);
 
