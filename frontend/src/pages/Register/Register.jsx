@@ -37,7 +37,7 @@ const Register = ({ toast }) => {
         password,
       });
       if (res.success) {
-        navigate("/myapis");
+        navigate("/");
         sessionStorage.setItem("Auth Token", res.token);
         toast.success(res.message);
       } else {
