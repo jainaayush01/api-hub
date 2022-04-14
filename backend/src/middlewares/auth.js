@@ -20,9 +20,9 @@ module.exports = function (req, res, next) {
   } catch (e) {
     console.error(e);
     res.status(500).send({
-      success: true,
-      errorType: "Internal Server Error",
-      errorMessage: "Internal Server Error",
+      success: false,
+      errorType: "Unauthorized",
+      errorMessage: "Unauthorized User! Login/Register to get access",
     });
   }
 };
