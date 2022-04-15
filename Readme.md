@@ -4,8 +4,6 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 
-<br/>
-
 # ✨ About
 * A Hub of APIs where users can display their APIs and share it with others to use it and create a nice website on top of their APIs.
 * A Playground is created for users to test an api by passing headers, body , and query paramters along with the api url.
@@ -15,8 +13,6 @@
 ### Live Website - <b>[APIHub](https://api-hub-dev.vercel.app/)</b>
 
 ### YouTube Video - <b>[YT](https://youtu.be/usncU7HzBPo)</b>
-
-<br/>
 
 # ✨ Tech Stack:
 
@@ -33,27 +29,31 @@
 
 ### Deployment & Testing: <b>Vercel, Heroku, Postman</b>
 
-<br/>
-
 # ✨ Snapshots 💫💫
 
+Explore Page(Home Page)
 ![](https://snipboard.io/M1a8dp.jpg)
 
+API Playground
 ![](https://snipboard.io/Ht9z6G.jpg)
 
+Background Remover WebApp
 ![](https://snipboard.io/V9kuMi.jpg)
 
+LogIn
 ![](https://snipboard.io/PqnYd9.jpg)
 
+SignUp
 ![](https://snipboard.io/9CEoVy.jpg)
 
+Add an API
 ![](https://snipboard.io/UCSvgR.jpg)
 
+All User APIs
 ![](https://snipboard.io/DKb1Gh.jpg)
 
+Edit or Delete User APIs
 ![](https://snipboard.io/FO1A6I.jpg)
-
-<br/>
 
 # ✨ Folder Structure
 
@@ -75,8 +75,6 @@ frontend
 
 ```
 
-<br/>
-
 # ✨ Usage
 
 ## Prerequisites
@@ -84,14 +82,10 @@ frontend
 * Node & npm
 * MongoDB
 
-<br/>
-
 ## Clone the repository
 ```
 $ git clone https://github.com/jainaayush01/apihub/ 
 ```
-
-<br/>
 
 ## Client Side (PORT: 3000)
 1. Run following commands:
@@ -112,8 +106,6 @@ $ git clone https://github.com/jainaayush01/apihub/
     ```
     $ npm run start
     ```
-
-<br/>
 
 ## Server Side (PORT: 8001)
 
@@ -136,8 +128,7 @@ $ git clone https://github.com/jainaayush01/apihub/
 4. start and you are ready to go
     ```
     $ npm run dev
-    ```
-<br/>
+    ``
 
 # Creator/Author 
 
