@@ -5,10 +5,10 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 
 # ✨ About
-* A Hub of APIs where users can display their APIs and share it with others to use it and create a nice website on top of their APIs.
-* A Playground is created for users to test an api by passing headers, body , and query paramters along with the api url.
-* Project also contains a Background Remover application to remove background of an image(uses remove.bg api).
-* Background Remover application is presented as an example for other users to create an web app by taking inspiration from apis present on the explore page.
+* A Hub of APIs where users can display their APIs and share it with others to use them and create a beautiful frontend on top of the APIs
+* A Playground is created for users to test an API by passing headers, body, and query parameters along with the API URL.
+* Project also contains a Background Remover application to remove the background of an image(uses remove.bg API).
+* Background Remover application is presented as an example for other users to create a web app by taking inspiration from APIs present on the explore page.
 
 ### Live Website - <b>[APIHub](https://api-hub-dev.vercel.app/)</b>
 
